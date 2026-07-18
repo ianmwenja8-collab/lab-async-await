@@ -1,24 +1,19 @@
 // Step 1: Create function to house fetch and apply async to function
 async function fetchPosts() {
-    try {
-        // Step 2: Apply await to fetch
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        
-        // Step 3: Apply await to get JSON data
-        const posts = await response.json();
-        
-        // Step 4: Call displayPosts() function after fetch
-        displayPosts(posts);
-        
-    } catch (error) {
-        console.error('Error fetching data:', error);
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+    if(!response.ok) {
+        throw new error("Failed to fetch posts");
     }
+    const posts = await response.json();
+
+    displayPosts(posts);
 }
 
 // Step 5: Create Function to Display Posts called displayPosts()
 // Step 6: Pass in the array of posts
-function displayPosts(posts) {
     const postList = document.getElementById('post-list');
+    function displayPosts(posts) {
     
     // Step 7: Loop through the posts list
     posts.forEach(post => {
@@ -41,8 +36,10 @@ function displayPosts(posts) {
         
         // Step 14: Append li to the ul (id is post-list)
         postList.appendChild(li);
+
+        console.log(document.body.innerHTML);
     });
-}
+    }
 
 // Execute the async function
 fetchPosts();
