@@ -1,11 +1,14 @@
 // Step 1: Create function to house fetch and apply async to function
 async function fetchPosts() {
+    console.log("fetchPosts() started");
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    console.log("Fetch completed");
 
     if(!response.ok) {
-        throw new error("Failed to fetch posts");
+        throw new Error("Failed to fetch posts");
     }
     const posts = await response.json();
+    console.log("Number of posts:", posts.length);
 
     displayPosts(posts);
 }
@@ -14,6 +17,7 @@ async function fetchPosts() {
 // Step 6: Pass in the array of posts
     const postList = document.getElementById('post-list');
     function displayPosts(posts) {
+        console.log("displayPosts() called");
     
     // Step 7: Loop through the posts list
     posts.forEach(post => {
@@ -38,6 +42,7 @@ async function fetchPosts() {
         postList.appendChild(li);
 
         console.log(document.body.innerHTML);
+        console.log("posts added:", postList.children.length);
     });
     }
 
