@@ -41,6 +41,7 @@ async function fetchPosts() {
         postList.appendChild(li);
 
         console.log(document.body.innerHTML);
+        console.log("displayPosts called");
     
     });
     }
